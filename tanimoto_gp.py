@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler
 from gpflow.utilities import positive
 from gpflow.utilities.ops import broadcasting_elementwise
 
+# A minor refactoring of code from
+# https://github.com/Ryan-Rhys/The-Photoswitch-Dataset/blob/master/examples/gp_regression_on_molecules.ipynb
 
 class Tanimoto(gpflow.kernels.Kernel):
     def __init__(self):
