@@ -4,7 +4,7 @@ Yet another ML method comparison, a comparison of
 * XGBoost
 * FeedForward Neural Network
 
-We are only comparing algorithms here, the same descriptor (RDKit Morgan2) are used throughout.
+We are only comparing algorithms here, the same descriptors (RDKit Morgan2) are used throughout.
 
 ![](r2_comparison.png)
 
