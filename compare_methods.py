@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -8,13 +10,15 @@ import numpy as np
 from xgboost import XGBRegressor
 from glob import glob
 from ffnn import FFNN
-
+import os
+import sys
 
 def rmse(truth, pred):
     return np.sqrt(mean_squared_error(truth, pred))
 
-
-for filename in sorted(glob("data/A*.smi")):
+res = []
+for filename in sorted(glob("data/*.smi")):
+    dataset_name = os.path.basename(filename).replace(".smi","")
     df = pd.read_csv(filename, names=["SMILES", "Name", "pIC50"], sep=" ")
     df['mol'] = df.SMILES.apply(Chem.MolFromSmiles)
     df['fp'] = [AllChem.GetMorganFingerprintAsBitVect(x, 2) for x in df.mol]
@@ -43,5 +47,9 @@ for filename in sorted(glob("data/A*.smi")):
         ff_pred = ff_nn.predict(X_test)
         ff_r2 = r2_score(y_test, ff_pred)
         ff_rmse = rmse(y_test, ff_pred)
-
-        print(filename, gp_r2, xgb_r2, ff_r2, gp_rmse, xgb_rmse, ff_rmse)
+        print([dataset_name, gp_r2, xgb_r2, ff_r2, gp_rmse, xgb_rmse, ff_rmse])
+        sys.stdout.flush()
+        res.append([dataset_name, gp_r2, xgb_r2, ff_r2, gp_rmse, xgb_rmse, ff_rmse])
+res_df = pd.DataFrame(res,columns=["dataset",'gp_r2','xgb_r2','ffnn_r2','gp_rmse','xgb_rmse','ffnn_rmse'])
+res_df.to_csv("comparison.csv",index=False)
+    
