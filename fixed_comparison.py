@@ -59,6 +59,6 @@ for dataset in dataset_list:
         print([dataset, col, gp_r2, xgb_r2, ff_r2, gp_rmse, xgb_rmse, ff_rmse])
         sys.stdout.flush()
         res.append([dataset, col, gp_r2, xgb_r2, ff_r2, gp_rmse, xgb_rmse, ff_rmse])
-    break
+
 res_df = pd.DataFrame(res, columns=["dataset", "split",'gp_r2', 'xgb_r2', 'ffnn_r2', 'gp_rmse', 'xgb_rmse', 'ffnn_rmse'])
 res_df.to_csv("comparison.csv", index=False)
