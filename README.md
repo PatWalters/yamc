@@ -6,7 +6,7 @@ Yet another ML method comparison, a comparison of
 
 We are only comparing algorithms here, the same descriptors (RDKit Morgan2) are used throughout.
 
-## Random Splits 
+<div align="center">## Random Splits 
 
 ![](r2_comparison.png)
 
