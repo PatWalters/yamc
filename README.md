@@ -6,6 +6,8 @@ Yet another ML method comparison, a comparison of
 
 We are only comparing algorithms here, the same descriptors (RDKit Morgan2) are used throughout.
 
+Datasets are from (https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542)[https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542]
+
 ## Random Splits 
 
 ![](r2_comparison.png)
