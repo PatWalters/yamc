@@ -18,13 +18,13 @@ Datasets are from [https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542](https://pu
 
 ## Random Splits 
 
-![](Random_split_r2.png)
+![](Random_splits_r2.png)
 
-![](Random_split_rmse.png)
+![](Random_splits_rmse.png)
 
 ## Scaffold Splits 
 
-![](Scaffold_split_r2.png)
+![](Scaffold_splits_r2.png)
 
-![](Scaffold_split_rmse.png)
+![](Scaffold_splits_rmse.png)
 
