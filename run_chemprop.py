@@ -10,11 +10,10 @@ def my_mkdir(dirname):
     except FileExistsError:
         pass
 
-
 def run_chemprop(dir_name, train_file, test_file, pred_file):
-    train_cmd_str = f"""chemprop_train --data_path {train_file} --metric r2 --ignore_columns Name --dataset_type regression --separate_test_path {test_file} --save_dir {dir_name}_save --num_folds 10 --quiet"""
+    train_cmd_str = f"""chemprop_train --data_path {train_file} --metric r2 --ignore_columns Name --dataset_type regression --separate_test_path {test_file} --save_dir {dir_name}_save --num_folds 10 --quiet --epochs 100 --features_generator rdkit_2d_normalized --no_features_scaling  """
     os.system(train_cmd_str)
-    pred_cmd_str = f"""chemprop_predict --test_path {test_file} --checkpoint_dir {dir_name}_save --preds_path {pred_file}"""
+    pred_cmd_str = f"""chemprop_predict --test_path {test_file} --checkpoint_dir {dir_name}_save --preds_path {pred_file} --features_generator rdkit_2d_normalized --no_features_scaling """
     os.system(pred_cmd_str)
 
 
@@ -48,9 +47,8 @@ def main():
     df = pd.read_csv("data/cv_splits.csv")
     my_mkdir("ChemProp")
     os.chdir("ChemProp")
-    num_folds = 1
-    #    for target in sorted(df.Dataset.unique()):
-    for target in sorted(["A2a"]):
+    num_folds = 10
+    for target in sorted(df.Dataset.unique()):
         print(target)
         my_mkdir(target)
         os.chdir(target)

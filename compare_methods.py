@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+import os
+# Tell TensorFlow to shut the hell up
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -10,7 +14,6 @@ import numpy as np
 from xgboost import XGBRegressor
 from glob import glob
 from ffnn import FFNN
-import os
 import sys
 
 def rmse(truth, pred):
