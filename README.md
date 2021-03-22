@@ -11,9 +11,9 @@ Datasets are from [https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542](https://pu
 
 ## Procedure
 
-1. fixed_comparison.py - writes output to comparison.csv
-2. run_chemprop.py (this takes several days, I could probably make it faster)
-3. analyze_chemprop.py - writes output to cp_comparison.csv
+1. fixed_comparison.py - runs GP, XGB, and FFNN, writes output to comparison.csv
+2. run_chemprop.py - runs ChemProp (this takes several days, I could probably make it faster)
+3. analyze_chemprop.py - gathers ouptut from ChemProp and writes output to cp_comparison.csv
 4. analysis.ipynb - reads comparison.csv and cp_comparison.csv and generates plots
 
 ## Random Splits 
