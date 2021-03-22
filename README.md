@@ -1,11 +1,11 @@
 # yamc
 Yet another ML method comparison, a comparison of 
-* Gaussian Process Regression
-* XGBoost
-* FeedForward Neural Network
-* ChemProp
+* Gaussian Process Regression (GP)
+* XGBoost (XGB)
+* FeedForward Neural Network (FFNN)
+* ChemProp (CP)
 
-We are only comparing algorithms here, the same descriptors (RDKit Morgan2) are used throughout.
+We are only comparing algorithms for GP, XGB and FFNN, The same descriptors (RDKit Morgan2) are used for all three. 
 
 Datasets are from [https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00542)
 
