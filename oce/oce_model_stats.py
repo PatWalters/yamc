@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
+import sys
 import olorenchemengine as oce
 import pandas as pd
 from tqdm.auto import tqdm
 from glob import glob
+import pathlib
 
-def generate_stats(split_df, target, model_in, split_type="RND"):
+
+def generate_stats(split_df, target, model_in, split_type):
     res_list = []
     for cycle in tqdm(range(0,10)):
         model = model_in.copy()
@@ -21,14 +24,23 @@ def generate_stats(split_df, target, model_in, split_type="RND"):
         model_preds = results.pop("values")
     return(pd.DataFrame(res_list,columns=["dataset","cycle","r2","rmse"]))
 
-def benchmark_dataset(split_df,dataset_name,split_type="RND"):
-    mm = oce.load(f"models/{dataset_name}_results.oce")
+def benchmark_dataset(split_df,dataset_name,split_type):
+    mm = oce.load(f"models/{dataset_name}_{split_type}_results.oce")
     model = mm.best_model
-    stat_df = generate_stats(split_df,dataset_name,model)
+    stat_df = generate_stats(split_df,dataset_name,model,split_type)
     stat_df.to_csv(f"{dataset_name}_{split_type}_stats.csv",index=False)
 
-split_df = pd.read_csv("../data/cv_splits.csv")
-for ds in sorted(split_df.Dataset.unique()):
-    print(ds)
-    benchmark_dataset(split_df,ds)
+
+def main():
+    if len(sys.argv) != 2:
+        print(f"usage : {sys.argv[0]} [RND|SCAF]")
+        sys.exit(0)
+
+    split_type = sys.argv[1]
+    split_df = pd.read_csv("../data/cv_splits.csv")
+    for ds in sorted(split_df.Dataset.unique()):
+        print(ds)
+        benchmark_dataset(split_df,ds,split_type)
+
+main()
     
